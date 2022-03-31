@@ -6,66 +6,9 @@ import NoteContext from "./notesContext";
 
 const NoteState=({children})=>{
 
-    const intialNotes=[
-        {
-          "_id": "62436b715c79f6c78f99aae1",
-          "title": "manmeet first note",
-          "description": "hello there",
-          "userId": "6240ce3abff3813fc2ba363a",
-          "tag": "sports",
-          "date": "2022-03-29T20:26:25.097Z",
-          "__v": 0
-        },{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet second note",
-            "description": "hello sss",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          },{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet third note",
-            "description": "hello there",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          }
-          ,{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet third note",
-            "description": "hello there",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          },{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet third note",
-            "description": "hello there",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          },{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet third note",
-            "description": "hello there",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          },{
-            "_id": "62436b715c79f6c78f99aae1",
-            "title": "manmeet third note",
-            "description": "hello there",
-            "userId": "6240ce3abff3813fc2ba363a",
-            "tag": "sports",
-            "date": "2022-03-29T20:26:25.097Z",
-            "__v": 0
-          }
-      ];
+    
+    //function to get the notes from a user
+    
 
       //writing some method to update delete and update the notes
       const addnote=(title,description,tag)=>{
@@ -82,6 +25,7 @@ const NoteState=({children})=>{
       }
 
 
+      //FUNCTION TO CHANGE THE ALERT MESSAGE AND TYPE
       const setShowMessage=(message,type)=>{
             setMessage(()=>{
                 return {
@@ -99,15 +43,56 @@ const NoteState=({children})=>{
         type:'',
     });
 
+
+    //FUNCTION TO CLOSE THE ALERT
     const closeAlertModal=()=>{
         setIsAlertOpen(false);
     }
 
+    //FUNCTIO TO OPEN THE ALERT
     const openAlertModal=()=>{
         setIsAlertOpen(true);
     }
+
+    
+
+
+    //FUNCTION TO DELETE A NOTE
+    const deleteNote=(id)=>{
+        
+      
+        const newNotes=notes.filter((note)=>{
+            return note._id!==id;
+        })
+        setNotes(newNotes);
+    
+    }
+
+
+    //FUNCTION TO UPDATE A NOTE
+    const updateNote=(id,title,description,tag)=>{
+        const newNotes=notes.map((note)=>{
+            if(note._id===id){
+                return {
+                    ...note,
+                    title,
+                    description,
+                    tag
+                }
+            }
+            return newNotes;
+        })
+
+        setNotes(newNotes);
+    }
+
+    const closeModalAfter2Seconds=()=>{
+        setTimeout(()=>{
+            setIsAlertOpen(false);
+        },2000)
+    }
     return (
-        <NoteContext.Provider value={{notes,addnote,messageState,setShowMessage,isAlertOpen,closeAlertModal,openAlertModal}}>
+        <NoteContext.Provider value={{notes,addnote,messageState,setShowMessage,isAlertOpen,closeModalAfter2Seconds,openAlertModal,deleteNote,updateNote}}>
                 {children}
         </NoteContext.Provider>   
     )

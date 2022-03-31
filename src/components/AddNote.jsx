@@ -2,7 +2,7 @@ import React,{useContext,useState} from 'react'
 import notesContext from '../context/notes/notesContext'
 function AddNote() {
     const noteContextData=useContext(notesContext);
-    const {addnote,setShowMessage,closeAlertModal,openAlertModal}=noteContextData;
+    const {addnote,setShowMessage,closeModalAfter2Seconds,openAlertModal}=noteContextData;
 
     const [note,setNote]=useState({
         title:'',
@@ -17,9 +17,8 @@ function AddNote() {
         addnote(note.title,note.description,note.tag);
         setShowMessage('Note Added Successfully','success');
         openAlertModal();
-        setTimeout(()=>{
-            closeAlertModal();
-        },3000)
+        closeModalAfter2Seconds();
+        
         setNote({
             title:'',
             description:'',

@@ -2,7 +2,7 @@ import React,{useContext}from 'react'
 import notesContext from '../context/notes/notesContext';
 function Alert() {
     const notesContextData=useContext(notesContext);
-    const {messageState,isAlertOpen,closeIsAlertOpen}=notesContextData;
+    const {messageState,isAlertOpen}=notesContextData;
     const {message,type}=messageState;
     return (
         <>
