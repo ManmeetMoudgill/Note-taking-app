@@ -23,6 +23,7 @@ import Alert from './components/Alert';
 
 
 
+
 function App() {
  
  
@@ -32,6 +33,7 @@ function App() {
     <Router>
       <Navbar/>
       <Alert/>
+      
         <div className='container'>
         <Routes>
             <Route exact path="/" element={<Home />} />

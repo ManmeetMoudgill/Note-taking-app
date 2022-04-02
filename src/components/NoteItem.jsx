@@ -2,10 +2,10 @@ import React,{useContext} from 'react'
 
 //import the noteContext 
 import noteContext from '../context/notes/notesContext'
-function NoteItem({note}) {
+function NoteItem({note,updateNoteCompo}) {
     const {title,description,tag}=note;
     const noteCotextData=useContext(noteContext);
-    const {deleteNote,setShowMessage,openAlertModal,closeModalAfter2Seconds,updateNote}=noteCotextData;
+    const {deleteNote,setShowMessage,openAlertModal,closeModalAfter2Seconds,setIsModalOpen}=noteCotextData;
     const deleteNoteAndShowAlert=(id)=>{
 
         deleteNote(id);
@@ -17,13 +17,7 @@ function NoteItem({note}) {
     }
 
 
-    //function for updating the note
-  /*   const updateNoteCompo=({id,title,description,tag})=>{
-        console.log(id);
-        updateNote(id,title,description,tag);
-        openAlertModal();
-        closeModalAfter2Seconds();
-    }    */
+   
   return (
     <div className='col-md-4'>
         <div className="card my-3">
@@ -32,7 +26,7 @@ function NoteItem({note}) {
             <h6 className="card-subtitle mb-2 text-muted">{tag}</h6>
             <p className="card-text">{description}</p>
             <i className="fa-solid fa-trash-can mx-2" onClick={()=>deleteNoteAndShowAlert(note._id)}></i>
-            <i className="fa-solid fa-edit mx-2 "></i>
+            <i className="fa-solid fa-edit mx-2  " type="button"  onClick={()=>updateNoteCompo(note)}></i>
         </div>
         </div>
     </div>
