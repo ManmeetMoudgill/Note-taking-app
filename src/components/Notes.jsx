@@ -90,7 +90,7 @@ const changeText=(e)=>{
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" ref={refClose} data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={updateNoteApi}>Update</button>
+              <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" className="btn btn-primary" onClick={updateNoteApi}>Update</button>
             </div>
           </div>
         </div>
@@ -99,9 +99,9 @@ const changeText=(e)=>{
 
 
       <div className="container my-3">
-        <h2>Your Notes</h2>
+        
         <div className='row'>
-
+          <h4>{notes.length===0 ?'No notes found':'Your Notes'}</h4>
           {notes.length>0 && notes.map((note, id) => {
             return <NoteItem key={id} updateNoteCompo={updateNoteCompo} note={note} />
           })}

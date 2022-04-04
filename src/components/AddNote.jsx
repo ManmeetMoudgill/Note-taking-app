@@ -53,7 +53,7 @@ function AddNote() {
           <label htmlFor="tag" className="form-label">Tag</label>
           <input  value={note.tag} type="text" name="tag" onChange={changeText} className="form-control" placeholder='Insert the placeholder' id="tag"/>
         </div>
-        <button type="submit" onClick={handleTheAddNote} className="btn btn-primary">Add Note</button>
+        <button disabled={note.title.length<5 || note.description.length<5} type="submit" onClick={handleTheAddNote} className="btn btn-primary">Add Note</button>
       </form>
     </div>
   )
