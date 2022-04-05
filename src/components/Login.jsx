@@ -1,13 +1,13 @@
 
 import React,{useState,useContext,useEffect} from 'react'
 import notesContext from '../context/notes/notesContext'
-
-
+//import use history from react-router-dom
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
 
     var baseUrl="http://localhost:80";
-
+    const history = useNavigate();
     const noteContextData=useContext(notesContext);
     const {userAuthToken,userAlreadyLoggedIn,setUserAuthToken,setShowMessage,openAlertModal,closeModalAfter2Seconds}=noteContextData;
     
@@ -16,10 +16,13 @@ function Login() {
    
     useEffect(()=>{
         userAlreadyLoggedIn();
-       
+        if(localStorage.getItem("authtoken")){
+            history('/');
+        }
         
     },[])
 
+   
     const [userLogin,setUserLogin]=useState({
         email:'',
         password:''
@@ -32,9 +35,11 @@ function Login() {
         })
     }
 
+
+
     const login=async(e)=>{
         e.preventDefault();
-        console.log(userLogin);
+       
         try {
             const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
               method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -49,9 +54,17 @@ function Login() {
               })
             });
             const dataBack=await response.json(); // parses JSON response into native JavaScript objects
-            console.log(dataBack);
-            setUserAuthToken(dataBack.authToken);
-            localStorage.setItem('authToken',dataBack.authToken);
+            
+            if(dataBack.success==true){
+                setUserAuthToken(dataBack.authToken);
+                localStorage.setItem('authToken',dataBack.authToken);
+                setShowMessage('You are logged in successfully','success');
+                openAlertModal();
+                closeModalAfter2Seconds();
+                history('/');
+
+
+            }
             
             if(dataBack.error){
                 setShowMessage(dataBack.error,'danger');

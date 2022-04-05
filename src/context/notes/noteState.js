@@ -25,7 +25,7 @@ const NoteState=({children})=>{
                   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                   headers: {
                     'Content-Type': 'application/json',
-                    "auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXIiOnsiaWQiOiI2MjQwY2UzYWJmZjM4MTNmYzJiYTM2M2EifX0sImlhdCI6MTY0ODg5ODU3OH0.R086pIVhR4vGaWVQB5Iq-7MUMBEC-P_bGPoB0Uw2D74"
+                    "auth-Token": userAuthToken
     
                     // 'Content-Type': 'application/x-www-form-urlencoded',
                   }
@@ -57,7 +57,7 @@ const NoteState=({children})=>{
                cache: 'no-cache',
                headers: {
                  'Content-Type': 'application/json',
-                 "auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXIiOnsiaWQiOiI2MjQwY2UzYWJmZjM4MTNmYzJiYTM2M2EifX0sImlhdCI6MTY0ODg5ODU3OH0.R086pIVhR4vGaWVQB5Iq-7MUMBEC-P_bGPoB0Uw2D74"
+                 "auth-Token": userAuthToken
                  
                  
                },
@@ -136,7 +136,7 @@ const NoteState=({children})=>{
                 cache: 'no-cache', 
                 headers: {
                   'Content-Type': 'application/json',
-                  "auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXIiOnsiaWQiOiI2MjQwY2UzYWJmZjM4MTNmYzJiYTM2M2EifX0sImlhdCI6MTY0ODg5ODU3OH0.R086pIVhR4vGaWVQB5Iq-7MUMBEC-P_bGPoB0Uw2D74"
+                  "auth-Token": userAuthToken
                   
                 
                 },
@@ -170,7 +170,7 @@ const NoteState=({children})=>{
                 cache: 'no-cache',
                 headers: {
                   'Content-Type': 'application/json',
-                   "auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXIiOnsiaWQiOiI2MjQwY2UzYWJmZjM4MTNmYzJiYTM2M2EifX0sImlhdCI6MTY0ODg5ODU3OH0.R086pIVhR4vGaWVQB5Iq-7MUMBEC-P_bGPoB0Uw2D74"
+                   "auth-Token": userAuthToken
                   
                   
                 },

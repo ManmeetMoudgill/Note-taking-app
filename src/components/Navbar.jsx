@@ -1,20 +1,27 @@
 import React,{useContext, useEffect,useState} from "react";
 import { Link,useLocation } from "react-router-dom";
 import notesContext from '../context/notes/notesContext';
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const location=useLocation();
   const notesContextData=useContext(notesContext);
-  const {userAuthToken,setUserAuthToken}=notesContextData;
+  const {userAuthToken,setUserAuthToken,setShowMessage,openAlertModal,closeModalAfter2Seconds}=notesContextData;
   const [currentLocation,setCurrentLocation]=useState('');
  
-
+  const navigate=useNavigate();
+  
   useEffect(()=>{
     setCurrentLocation(location.pathname);
   })
+
   const logout=()=>{
     localStorage.removeItem('authToken');
     setUserAuthToken('');
+    setShowMessage('You are logged out successfully','success');
+    openAlertModal();
+    closeModalAfter2Seconds();
+    navigate('/login');
+
   }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,9 +54,9 @@ const Navbar = () => {
             </li>
           </ul>
           
-          {userAuthToken && <button className="btn btn-outline-danger my-2 my-sm-0" onClick={logout}>Logout</button>}
           {!userAuthToken && currentLocation!=='/login' && <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
-          <Link className="btn btn-secondary btn-small mx-1" to="/signup">Sign up</Link>
+          {userAuthToken?<button className="btn btn-outline-danger my-2 my-sm-0" onClick={logout}>Logout</button>: <Link className="btn btn-secondary btn-small mx-1" to="/signup">Sign up</Link>}
+         
           
         </div>
       </div>
