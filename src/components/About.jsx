@@ -1,11 +1,14 @@
 
 import React,{useContext} from 'react'
-import notesContext from '../context/notes/notesContext'
+import notesContext from '../context/notes/notesContext';
 const About = () => {
   const data=useContext(notesContext);
-  console.log(data);
+  const {userAuthToken}=data;
   return (
-    <div>About</div>
+    <>
+    {userAuthToken ? <div>About</div>:<div><h3>Please Login to see the about page!</h3></div> }
+    </>
+    
   )
 }
 

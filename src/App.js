@@ -20,6 +20,8 @@ import Navbar from './components/Navbar';
 //import the newState from the notesContext file
 import NoteState from './context/notes/noteState.js';
 import Alert from './components/Alert';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 
@@ -38,6 +40,9 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/about" element={<About />} />
+            <Route exact path="/login"  element={<Login/>}/>
+            <Route exact path="/signup"  element={<Signup/>}/>
+
         </Routes>
         </div>
     </Router>

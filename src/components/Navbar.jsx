@@ -1,14 +1,27 @@
-import React, { useEffect } from "react";
+import React,{useContext, useEffect,useState} from "react";
 import { Link,useLocation } from "react-router-dom";
+import notesContext from '../context/notes/notesContext';
+
 const Navbar = () => {
   const location=useLocation();
+  const notesContextData=useContext(notesContext);
+  const {userAuthToken,setUserAuthToken}=notesContextData;
+  const [currentLocation,setCurrentLocation]=useState('');
  
+
+  useEffect(()=>{
+    setCurrentLocation(location.pathname);
+  })
+  const logout=()=>{
+    localStorage.removeItem('authToken');
+    setUserAuthToken('');
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           Navbar
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -33,17 +46,11 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          
+          {userAuthToken && <button className="btn btn-outline-danger my-2 my-sm-0" onClick={logout}>Logout</button>}
+          {!userAuthToken && currentLocation!=='/login' && <Link className="btn btn-outline-success my-2 my-sm-0" to="/login">Login</Link>}
+          <Link className="btn btn-secondary btn-small mx-1" to="/signup">Sign up</Link>
+          
         </div>
       </div>
     </nav>

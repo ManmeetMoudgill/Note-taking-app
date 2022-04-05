@@ -3,9 +3,15 @@ import React,{useState} from "react";
 //import the notesContext from the notesContext file
 import NoteContext from "./notesContext";
 
+
 var baseUrl="http://localhost:80";
 const NoteState=({children})=>{
 
+    //create a function to login the user
+    const [userAuthToken,setUserAuthToken]=useState(null);
+
+
+   
     
     //function to get the notes from a user
     const  getNotes= async ()=>{
@@ -203,13 +209,19 @@ const NoteState=({children})=>{
         
     }
 
+    const userAlreadyLoggedIn=()=>{
+        var userAuthLocal=localStorage.getItem('authToken');
+        setUserAuthToken(userAuthToken?userAuthToken:userAuthLocal);
+        
+    }
+
     const closeModalAfter2Seconds=()=>{
         setTimeout(()=>{
             setIsAlertOpen(false);
         },2000)
     }
     return (
-        <NoteContext.Provider value={{notes,addnote,messageState,setShowMessage,isAlertOpen,closeAlertModal,closeModalAfter2Seconds,openAlertModal,deleteNote,updateNote,getNotes}}>
+        <NoteContext.Provider value={{notes,userAuthToken,userAlreadyLoggedIn,setUserAuthToken,addnote,messageState,setShowMessage,isAlertOpen,closeAlertModal,closeModalAfter2Seconds,openAlertModal,deleteNote,updateNote,getNotes}}>
                 {children}
         </NoteContext.Provider>   
     )
